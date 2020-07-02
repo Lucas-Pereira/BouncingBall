@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		canvas{background: #333;}
+	</style>
+</head>
+<body>
+<canvas height="600" width="600" id="canvas"></canvas>
+<script type="text/javascript" src="Vetor.js"></script>
+<script type="text/javascript">
+	vet = new Vetor();
+    vet.addPos(30,300);
+    this.velx = 2;
+    this.vely = 3.5; 
+    this.c = document.getElementById("canvas");
+    this.canvas = c.getContext("2d");
+    this.size = 10;
+    this.cores = ["white","red", "green", "yellow", "pink","dodgerblue", "tomato", "purple", "blue", "orange", "gray"];
+    this.cont = 0;
+    function mostrar(){
+
+    this.canvas.beginPath();
+    //console.log(vet.x+" "+ vet.y);
+    this.canvas.arc(vet.x, vet.y,this.size,0, 2*Math.PI);
+    this.canvas.strokeStyle ="rgba(1,1,1,0)";
+    this.canvas.fillStyle = cores[this.cont];
+    this.canvas.fill();
+
+    }
+    function limpar(){
+    	this.canvas.clearRect(0,0,600,600);
+    }
+
+    function mover(){
+     
+     if(this.cont>this.cores.length) this.cont = 0;
+   
+     if((vet.x>=600) || (vet.x-this.size<=0)){
+     	this.velx = this.velx *-1;
+     	this.cont++;
+     	//this.fillStyle =  cores[this.cont];
+     }
+     if((vet.y>=600) || vet.y-this.size<=0){
+     	this.vely = this.vely* -1;
+     	this.cont++;
+     	//this.fillStyle =  cores[this.cont];
+     }
+
+
+      vet.add(velx, vely);
+    }
+
+    function setup(){
+    	limpar();
+    	mostrar();
+        mover();
+        
+        requestAnimationFrame(setup);
+        //console.log("func");
+    }
+    setup();
+</script>
+</body>
+</html>
